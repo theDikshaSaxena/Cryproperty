@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Properties</title>
+</head>
+<body>
+    <a href="Properties/new"> List your Property!</a>
+    <h1>All Properties</h1>
+    <ul>
+        <% for (let i of property) { %>
+            <li><a href="/Properties/<%= i._id %>"><%=i.title %></a></li>
+        <% } %>
+    </ul>
+</body>
+</html>
