@@ -38,7 +38,7 @@ app.get('/user/registerpage', (req,res)=> {
     res.render('auth/register.ejs')
 })
 
-//login 
+//login
 app.get('/user/login', (req,res)=> {
     res.render('login.ejs')
 })

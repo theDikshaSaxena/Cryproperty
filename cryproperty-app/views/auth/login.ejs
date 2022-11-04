@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="flex w-screen h-screen justify-center items-center">
+    <div class="flex-col space-y-2 justify-center items-center">
+        <button id='loginButton' onclick="" class="mx-auto rounded-md p-2 bg-purple-500 text-white">
+        Login
+      </button>
+    </div>
+    <script>
+      window.userWalletAddress = null
+      const loginButton = document.getElementById('loginButton')
+      const userWallet = document.getElementById('userWallet')
+  
+      function toggleButton() {
+        if (!window.ethereum) {
+          loginButton.innerText = 'MetaMask is not installed'
+          loginButton.classList.remove('bg-purple-500', 'text-white')
+          loginButton.classList.add('bg-gray-500', 'text-gray-100', 'cursor-not-allowed')
+          return false
+        }
+  
+        loginButton.addEventListener('click', loginWithMetaMask)
+      }
+  
+      async function loginWithMetaMask() {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+          .catch((e) => {
+            console.error(e.message)
+            return
+          })
+        if (!accounts) { return }
+        window.userWalletAddress = accounts[0]
+        userWallet.innerText = window.userWalletAddress
+        
+      }
+      window.addEventListener('DOMContentLoaded', () => {
+        toggleButton()
+      });
+    </script>
+  </body>
+</html>
